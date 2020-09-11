@@ -1,0 +1,16 @@
+version: "2.4"
+services:
+  open-balena:
+    container_name: open-balena
+    privileged: true
+    build:
+      context: .
+      dockerfile: open-balena.Dockerfile
+    ports:
+      # HAproxy is used as a load balancer for the system, and it opens port 80, 443 and 3128. 
+      # 80 is used for HTTP access to the API, registry, S3 and VPN services that listen on it. 
+      # 443 is used for HTTPS access to all of these services.
+      # 3128 is for the HTTP CONNECT proxy built into the VPN and is used for things like the balena-cli tunnel command
+      - "80"
+      - "443"
+      - "3128"
