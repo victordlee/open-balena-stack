@@ -3,6 +3,7 @@ services:
   open-balena:
     container_name: open-balena
     privileged: true
+    init: true
     build:
       context: .
       dockerfile: open-balena.Dockerfile
